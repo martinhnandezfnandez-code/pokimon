@@ -30,7 +30,7 @@ public class EstadisticasServicesImpl implements EstadisticasServices {
 
             try {
                 if (baseStat != null) {
-                    switch (nombreStat) {
+                    switch (nombreStat.replace("\"", "")) {
                         case "hp":
                             estadisticas.setHp(baseStat.asDouble());
                             break;
@@ -43,7 +43,7 @@ public class EstadisticasServicesImpl implements EstadisticasServices {
                         case "special-attack":
                             estadisticas.setAtaqueEspecial(baseStat.asDouble());
                             break;
-                        case "special-defens":
+                        case "special-defense":
                             estadisticas.setDefensaEspecial(baseStat.asDouble());
                             break;
                         case "speed":

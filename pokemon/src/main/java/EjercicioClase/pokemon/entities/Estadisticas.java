@@ -23,4 +23,14 @@ public class Estadisticas {
         this.defensaEspecial = defensaEspecial;
         this.velocidad = velocidad;
     }
+
+    @Override
+    public String toString() {
+        return "\tHp=" + hp +
+                "\tAtaque=" + ataque +
+                "\tDefensa=" + defensa +
+                "\tAtaqueEspecial=" + ataqueEspecial +
+                ",\tDefensaEspecial=" + defensaEspecial +
+                ",\tVelocidad=" + velocidad;
+    }
 }
