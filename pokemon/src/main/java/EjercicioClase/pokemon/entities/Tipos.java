@@ -12,10 +12,6 @@ public class Tipos {
         super();
     }
 
-    public Tipos(String tipoPrimario, String tipoSecundario) {
-        this.tipoPrimario = tipoPrimario;
-        this.tipoSecundario = tipoSecundario;
-    }
 
     @Override
     public String toString() {

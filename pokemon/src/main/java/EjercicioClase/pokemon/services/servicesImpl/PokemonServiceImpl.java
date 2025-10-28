@@ -1,12 +1,10 @@
 package EjercicioClase.pokemon.services.servicesImpl;
 
 import EjercicioClase.pokemon.entities.Estadisticas;
+import EjercicioClase.pokemon.entities.Habilidades;
 import EjercicioClase.pokemon.entities.Pokemon;
 import EjercicioClase.pokemon.entities.Tipos;
-import EjercicioClase.pokemon.services.ConexionApi;
-import EjercicioClase.pokemon.services.EstadisticasServices;
-import EjercicioClase.pokemon.services.PokemonService;
-import EjercicioClase.pokemon.services.TiposService;
+import EjercicioClase.pokemon.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +17,8 @@ public class PokemonServiceImpl implements PokemonService {
     private EstadisticasServices estadisticasServices;
     @Autowired
     private TiposService tiposService;
+    @Autowired
+    private HabilidadesServices habilidadesServices;
 
     /**
      * Metodo que obtiene un pokemon dado su nombre
@@ -32,6 +32,7 @@ public class PokemonServiceImpl implements PokemonService {
 
         Estadisticas estadisticas = estadisticasServices.obtenerStatBase(jsonPoke);
         Tipos tipo = tiposService.obtenerTipos(jsonPoke);
-        return new Pokemon(estadisticas, nombre, tipo);
+        Habilidades habilidades = habilidadesServices.obtenerHabilidades(jsonPoke);
+        return new Pokemon(estadisticas, nombre, tipo, habilidades);
     }
 }

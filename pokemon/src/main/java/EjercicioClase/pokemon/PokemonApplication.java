@@ -2,12 +2,10 @@ package EjercicioClase.pokemon;
 
 import EjercicioClase.pokemon.entities.Pokemon;
 import EjercicioClase.pokemon.services.PokemonService;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -30,6 +28,7 @@ public class PokemonApplication {
             System.out.println("Nombre: " + pokemon.getNombre());
             System.out.println("Estadísticas: " + pokemon.getEstadistica().toString());
             System.out.println("Tipos: "+pokemon.getTipos().toString());
+            System.out.println("Habilidades: "+pokemon.getHabilidades().toString());
         };
     }
 
