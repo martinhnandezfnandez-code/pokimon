@@ -33,7 +33,8 @@ public class PokemonServiceImpl implements PokemonService {
 
         Estadisticas estadisticas = estadisticasServices.obtenerStatBase(jsonPoke);
         Tipos tipo = tiposService.obtenerTipos(jsonPoke);
-        Habilidades habilidades = habilidadesServices.obtenerHabilidades(jsonPoke);
+        Habilidades habilidades = habilidadesServices.obtenerHabilidadesDeUnPoken(jsonPoke);
+
         return new Pokemon(estadisticas, nombre, tipo, habilidades);
     }
 }
