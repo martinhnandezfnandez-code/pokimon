@@ -6,7 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Habilidades {
-    private String habilidad, habilidadOculta;
+    private String habilidad, habilidad2, habilidadOculta;
 
     public Habilidades() {
         super();
@@ -14,8 +14,14 @@ public class Habilidades {
 
     @Override
     public String toString() {
-        return "Habilidades:\n" +
-                "\tHabilidad= " + habilidad + '\n' +
-                "\tHabilidad Oculta= " + habilidadOculta + '\n';
+        String response = "\tHabilidad= " + habilidad + '\n';
+
+        if (habilidad2 != null) {
+            response += "\tHabilidad 2= " + habilidad2 + '\n';
+        }
+
+        response += "\tHabilidad oculta= " + habilidadOculta + '\n';
+
+        return response;
     }
 }

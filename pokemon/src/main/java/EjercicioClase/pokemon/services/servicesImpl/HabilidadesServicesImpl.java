@@ -32,6 +32,9 @@ public class HabilidadesServicesImpl implements HabilidadesServices {
                 case "1":
                     habilidades.setHabilidad(nombreHabilidad.replace("\"", ""));
                     break;
+                case "2":
+                    habilidades.setHabilidad2(nombreHabilidad.replace("\"", ""));
+                    break;
                 case "3":
                     habilidades.setHabilidadOculta(nombreHabilidad.replace("\"", ""));
                     break;
