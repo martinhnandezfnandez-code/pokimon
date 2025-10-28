@@ -8,5 +8,5 @@ import java.net.URISyntaxException;
 
 @Service
 public interface ConexionApi {
-    String getPokeJson(String nombre) throws IOException, URISyntaxException;
+    String getPokeJsonByName(String nombre, Integer tipoConsulta) throws IOException, URISyntaxException;
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PokemonServiceImpl implements PokemonService {
+    public static final int OBTENER_POKEMON_ID = 1;
 
     @Autowired
     private ConexionApi conexionApi;
@@ -28,7 +29,7 @@ public class PokemonServiceImpl implements PokemonService {
      */
     @Override
     public Pokemon obtenerPokemonPorNombre(String nombre) throws Exception {
-        String jsonPoke = conexionApi.getPokeJson(nombre);
+        String jsonPoke = conexionApi.getPokeJsonByName(nombre, OBTENER_POKEMON_ID);
 
         Estadisticas estadisticas = estadisticasServices.obtenerStatBase(jsonPoke);
         Tipos tipo = tiposService.obtenerTipos(jsonPoke);
