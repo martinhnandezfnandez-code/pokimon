@@ -15,15 +15,10 @@ public class Estadisticas {
         super();
     }
 
-    public Estadisticas(double hp, double ataque, double defensa, double ataqueEspecial, double defensaEspecial, double velocidad) {
-        this.hp = hp;
-        this.ataque = ataque;
-        this.defensa = defensa;
-        this.ataqueEspecial = ataqueEspecial;
-        this.defensaEspecial = defensaEspecial;
-        this.velocidad = velocidad;
-    }
-
+    /**
+     * Metodo que escupe una cadena de texto con las estadísticas del pokemon
+     * @return String con cadena de estadisticas
+     */
     @Override
     public String toString() {
         return "\tHp=" + hp + "\n" +

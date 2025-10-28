@@ -55,7 +55,7 @@ public class EstadisticasServicesImpl implements EstadisticasServices {
                     }
                 }
             } catch (Exception e) {
-                throw new RuntimeException("Se ha producido un error al mapear las estadisticas del pokimo");
+                throw new RuntimeException("Se ha producido un error al mapear las estadísticas del Pokemon");
             }
 
         }
