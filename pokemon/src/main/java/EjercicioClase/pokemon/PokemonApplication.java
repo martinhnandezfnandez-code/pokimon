@@ -29,6 +29,7 @@ public class PokemonApplication {
             System.out.println("=====Pokemon=====");
             System.out.println("Nombre: " + pokemon.getNombre());
             System.out.println("Estadisticas: " + pokemon.getEstadistica().toString());
+            System.out.println("Tipos: "+pokemon.getTipos().toString());
         };
     }
 

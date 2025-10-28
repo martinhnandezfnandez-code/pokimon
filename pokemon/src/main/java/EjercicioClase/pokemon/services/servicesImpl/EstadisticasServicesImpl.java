@@ -26,7 +26,7 @@ public class EstadisticasServicesImpl implements EstadisticasServices {
             JsonNode baseStat = stat.get("base_stat");
             JsonNode nameStat = stat.get("stat");
 
-            String nombreStat = nameStat.get("name").toString();
+            String nombreStat = String.valueOf(nameStat.get("name"));
 
             try {
                 if (baseStat != null) {
