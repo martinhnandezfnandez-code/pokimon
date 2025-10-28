@@ -1,10 +1,11 @@
 package EjercicioClase.pokemon.services;
 
-import EjercicioClase.pokemon.entities.Pokemon;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+
 
 @Service
 public interface ConexionApi {
-
-    Pokemon obtenerPokemonPorNombre(String nombre);
+    String getPokeJson(String nombre) throws IOException;
 }

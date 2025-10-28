@@ -11,7 +11,7 @@ import lombok.Setter;
 public class Estadisticas {
     private double hp, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad;
 
-    public Estadisticas(){
+    public Estadisticas() {
         super();
     }
 
@@ -24,4 +24,3 @@ public class Estadisticas {
         this.velocidad = velocidad;
     }
 }
-
