@@ -3,6 +3,9 @@ package EjercicioClase.pokemon.entities;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Clase que construye la habilidad con su nombre y description
+ */
 @Getter
 @Setter
 public class Habilidad {
@@ -10,15 +13,6 @@ public class Habilidad {
 
     public Habilidad() {
         super();
-    }
-
-    public Habilidad(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Habilidad(String nombre, String descripcion) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
     }
 
     public Habilidad(Habilidad habilidad) {
@@ -31,8 +25,11 @@ public class Habilidad {
         }
     }
 
+    /**
+     * @return devuelve String de con el nombre y la descripción de ella
+     */
     @Override
     public String toString() {
-        return "\t Nombre = " + nombre + "\t descipcion = " + descripcion + '\n';
+        return "\t" + nombre + "\t Description = " + descripcion + '\n';
     }
 }

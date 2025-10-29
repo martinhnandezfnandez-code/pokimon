@@ -35,11 +35,11 @@ public class ConexionApiImpl implements ConexionApi {
      * Metodo que obtiene un JSON dado el nombre del pokemon.
      *
      * @param valorConsulta Busca el valor que le digas en la API según el tipo enviado.
-     * @param tipoConsulta: ID con el tipo de consulta que deseamos realizar:
+     * @param tipoConsulta: iD con el tipo de consulta que deseamos realizar:
      *                      1 = POKEMON
      *                      2 = HABILIDAD
      *
-     * @return Objeto STRING con el JSON obtenido para la llamada a la API en base al tipo de consulta y el valor dado.
+     * @return Objeto STRING con el JSON obtenido para la llamada a la API basándonos en el tipo de consulta y el valor dado.
      */
     @Override
     public String getPokeJsonByName(String valorConsulta, Integer tipoConsulta) throws IOException, URISyntaxException {
@@ -55,7 +55,7 @@ public class ConexionApiImpl implements ConexionApi {
                     break;
                 default:
                     System.out.println("No se ha introducido un tipo valido");
-                    System.out.println("Consulta los posibles tipos aqui: " + url);
+                    System.out.println("Consulta los posibles tipos aquí: " + url);
             }
 
             return getJsonResponse(url);

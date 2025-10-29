@@ -12,10 +12,6 @@ public class Pokemon {
     private Tipos tipos;
     private Habilidades habilidades;
 
-    public Pokemon() {
-        super();
-    }
-
     public Pokemon(Estadisticas estadistica, String nombre, Tipos tipo, Habilidades habilidades) {
         this.estadistica = estadistica;
         this.nombre = nombre;

@@ -18,7 +18,10 @@ public class HabilidadServiceImpl implements HabilidadService {
     public static final int CONSULTA_HABILIDAD_ID = 2;
     @Autowired
     private ConexionApi conexionApi;
-
+    /**
+     * * Metodo que obtiene la habilidad y su descripcion de un json obtenido
+     * * @param jsonCompleto: Json con las habilidades y su descripcion.
+     */
     @Override
     public Habilidad obtenerHabilidad(String jsonCompleto) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

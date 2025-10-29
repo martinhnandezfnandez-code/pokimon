@@ -3,6 +3,9 @@ package EjercicioClase.pokemon.entities;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Constructor de clase de tipos
+ */
 @Setter
 @Getter
 public class Tipos {
@@ -12,13 +15,15 @@ public class Tipos {
         super();
     }
 
-
+    /**
+     * @return Devuelve un String con los tipos o tipo basándonos en el pokemon
+     */
     @Override
     public String toString() {
         String response = "\ttipoPrimario= " + tipoPrimario + '\n';
 
-        if (tipoSecundario!=null){
-            response +=  "\ttipoSegundario= " + tipoSecundario + '\'';
+        if (tipoSecundario != null) {
+            response += "\ttipoSegundario= " + tipoSecundario + '\'';
         }
         return response;
     }

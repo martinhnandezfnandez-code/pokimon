@@ -29,7 +29,7 @@ public class PokemonApplication {
             System.out.println("Nombre: " + pokemon.getNombre());
             System.out.println("Estadísticas: " + pokemon.getEstadistica().toString());
             System.out.println("Tipos: " + pokemon.getTipos().toString());
-            System.out.println("Habilidades: " + pokemon.getHabilidades().toString());
+            System.out.println("Habilidades: \n" + pokemon.getHabilidades().toString());
         };
     }
 

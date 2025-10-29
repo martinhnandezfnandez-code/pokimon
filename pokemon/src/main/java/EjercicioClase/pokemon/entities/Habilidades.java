@@ -2,7 +2,9 @@ package EjercicioClase.pokemon.entities;
 
 import lombok.Getter;
 import lombok.Setter;
-
+/**
+ * Clase que construye todas las habilidades del pokemon
+ */
 @Setter
 @Getter
 public class Habilidades {
@@ -17,7 +19,7 @@ public class Habilidades {
         String response = "\tHabilidad= " + habilidad.toString() + '\n';
 
         if (habilidad2 != null) {
-            response += "\tHabilidad 2= " + habilidad2.toString() + '\n';
+            response += "\tHabilidad 2= " + habilidad2 + '\n';
         }
 
         response += "\tHabilidad oculta= " + habilidadOculta.toString() + '\n';
