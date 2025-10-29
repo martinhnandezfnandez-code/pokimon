@@ -2,6 +2,7 @@ package EjercicioClase.pokemon.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+
 /**
  * Clase que construye todas las habilidades del pokemon
  */
@@ -16,14 +17,14 @@ public class Habilidades {
 
     @Override
     public String toString() {
-        String response = "\tHabilidad= " + habilidad.toString() + '\n';
+        String response = "\n\tHabilidad= " + habilidad.toString() + '\n';
 
         if (habilidad2 != null) {
             response += "\tHabilidad 2= " + habilidad2 + '\n';
         }
-
-        response += "\tHabilidad oculta= " + habilidadOculta.toString() + '\n';
-
+        if (habilidadOculta != null) {
+            response += "\tHabilidad oculta= " + habilidadOculta.toString() + '\n';
+        }
         return response;
     }
 }

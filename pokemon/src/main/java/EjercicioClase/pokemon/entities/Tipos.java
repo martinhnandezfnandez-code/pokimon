@@ -20,7 +20,7 @@ public class Tipos {
      */
     @Override
     public String toString() {
-        String response = "\ttipoPrimario= " + tipoPrimario + '\n';
+        String response = "\n\ttipoPrimario= " + tipoPrimario + '\n';
 
         if (tipoSecundario != null) {
             response += "\ttipoSegundario= " + tipoSecundario + '\'';

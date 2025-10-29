@@ -21,7 +21,7 @@ public class Estadisticas {
      */
     @Override
     public String toString() {
-        return "\tHp=" + hp + "\n" +
+        return "\n\tHp=" + hp + "\n" +
                 "\tAtaque=" + ataque + "\n" +
                 "\tDefensa=" + defensa + "\n" +
                 "\tAtaqueEspecial=" + ataqueEspecial + "\n" +
