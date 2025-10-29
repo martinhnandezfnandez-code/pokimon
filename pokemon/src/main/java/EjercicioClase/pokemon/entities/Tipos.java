@@ -23,7 +23,7 @@ public class Tipos {
         String response = "\n\ttipoPrimario= " + tipoPrimario + '\n';
 
         if (tipoSecundario != null) {
-            response += "\ttipoSegundario= " + tipoSecundario + '\'';
+            response += "\ttipoSegundario= " + tipoSecundario + "\n";
         }
         return response;
     }
