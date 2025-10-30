@@ -18,6 +18,7 @@ public class HabilidadServiceImpl implements HabilidadService {
     public static final int CONSULTA_HABILIDAD_ID = 2;
     @Autowired
     private ConexionApi conexionApi;
+
     /**
      * * Metodo que obtiene la habilidad y su descripcion de un json obtenido
      * * @param jsonCompleto: Json con las habilidades y su descripcion.
@@ -26,13 +27,16 @@ public class HabilidadServiceImpl implements HabilidadService {
     public Habilidad obtenerHabilidad(String jsonCompleto) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(jsonCompleto);
-
         Habilidad habilidad = new Habilidad();
 
-        // Obtener el nombre
-        habilidad.setNombre(root.get("name").asText());
+        JsonNode names = root.get("names");
+        for (JsonNode name : names) {
+            if (name.get("language").get("name").asText().equals("es")) {
+                habilidad.setNombre(name.get("name").asText());
+                break;
+            }
+        }
 
-        // Obtener la descripción en español
         JsonNode entries = root.get("flavor_text_entries");
 
         for (JsonNode entry : entries) {
