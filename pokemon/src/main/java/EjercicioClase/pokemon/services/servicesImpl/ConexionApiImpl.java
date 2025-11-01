@@ -22,13 +22,14 @@ public class ConexionApiImpl implements ConexionApi {
     public static final String BASE_URL = "https://pokeapi.co/api/v2/";
     public static final String POKEMON_URL = "pokemon/";
     public static final String HABILIDAD_URL = "ability/";
-
+    public static final String TIPOS_URL = "type/";
 
     /**
      * Tipos de busquedas en la API
      * */
     public static final int BUSQUEDA_NOMBRE_ID = 1;
     public static final int BUSQUEDA_HABILIDAD_ID = 2;
+    public static final int BUSQUEDA_TIPO_ID = 3;
 
 
     /**
@@ -52,6 +53,9 @@ public class ConexionApiImpl implements ConexionApi {
                     break;
                 case BUSQUEDA_HABILIDAD_ID:
                     url += HABILIDAD_URL + valorConsulta;
+                    break;
+                case BUSQUEDA_TIPO_ID:
+                    url += TIPOS_URL+ valorConsulta;
                     break;
                 default:
                     System.out.println("No se ha introducido un tipo valido");

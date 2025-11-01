@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Tipos {
-    private String tipoPrimario, tipoSecundario;
+    private Tipo tipoPrimario, tipoSecundario;
 
     public Tipos() {
         super();
@@ -20,7 +20,7 @@ public class Tipos {
      */
     @Override
     public String toString() {
-        String response = "\n\ttipoPrimario= " + tipoPrimario + '\n';
+        String response = "\n\ttipoPrimario= " + tipoPrimario.toString() + '\n';
 
         if (tipoSecundario != null) {
             response += "\ttipoSegundario= " + tipoSecundario + "\n";

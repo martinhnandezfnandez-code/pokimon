@@ -1,14 +1,20 @@
 package EjercicioClase.pokemon.services.servicesImpl;
 
+import EjercicioClase.pokemon.entities.Tipo;
 import EjercicioClase.pokemon.entities.Tipos;
+import EjercicioClase.pokemon.services.TipoService;
 import EjercicioClase.pokemon.services.TiposService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TiposServiceImpl implements TiposService {
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @Autowired
+    private TipoService tipoService;
 
     @Override
     public Tipos obtenerTipos(String jsonCompleto) throws Exception {
@@ -21,14 +27,17 @@ public class TiposServiceImpl implements TiposService {
             JsonNode nameType = stat.get("type");
 
 
-            String nombreType = String.valueOf(nameType.get("name"));
+            String nombreType = String.valueOf(nameType.get("name")).replace("\"", "");
             String nSlot = String.valueOf(stat.get("slot"));
+
+            //Una vez que tenemos el nombre obtenemos el tipo y sus tipos de daño
+            Tipo tipo = new Tipo(tipoService.obtenerTipoPorNombre(nombreType));
             switch (nSlot) {
                 case "1":
-                    tipos.setTipoPrimario(nombreType.replace("\"", ""));
+                    tipos.setTipoPrimario(tipo);
                     break;
                 case "2":
-                    tipos.setTipoSecundario(nombreType.replace("\"", ""));
+                    tipos.setTipoSecundario(tipo);
                     break;
                 default://a luis no le interesa
             }
