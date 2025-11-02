@@ -41,9 +41,7 @@ public class Tipo {
     @Override
     public String toString() {
         return "Tipo " +
-                "nombre= " + nombre + '\n' +
-                " dobleDañoRecibido=" + dobleDañoRecibido +
-                " mitadDañoRecibido=" + mitadDañoRecibido +
-                " noDañoRecibido=" + noDañoRecibido;
+                "nombre= " + nombre + '\n';
+
     }
 }
