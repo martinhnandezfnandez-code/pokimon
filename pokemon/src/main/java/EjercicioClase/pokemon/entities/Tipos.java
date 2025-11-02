@@ -15,7 +15,6 @@ public class Tipos {
     private Tipo tipoPrimario;
     private Tipo tipoSecundario;
 
-    // Resultados del cálculo
     private Map<String, Double> multiplicadores;
     private List<DebilidadFortaleza> debilidades;
     private List<DebilidadFortaleza> fortalezas;
@@ -30,7 +29,7 @@ public class Tipos {
     }
 
     /**
-     * Establece el tipo primario y recalcula debilidades/fortalezas
+     * Establece el tipo primario y calcula las debilidades y fortalezas
      */
     public void setTipoPrimario(Tipo tipoPrimario) {
         this.tipoPrimario = tipoPrimario;
@@ -38,7 +37,7 @@ public class Tipos {
     }
 
     /**
-     * Establece el tipo secundario y recalcula debilidades/fortalezas
+     * Establece el tipo secundario y calcula las debilidades y fortalezas
      */
     public void setTipoSecundario(Tipo tipoSecundario) {
         this.tipoSecundario = tipoSecundario;
@@ -46,7 +45,7 @@ public class Tipos {
     }
 
     /**
-     * Calcula automáticamente las debilidades y fortalezas basándose en los tipos actuales
+     * Calcula automáticamente las debilidades y fortalezas basándose en los tipos del pokemon
      */
     public void calculateDebilidadesFortalezas() {
         // Limpiar resultados anteriores
@@ -131,7 +130,7 @@ public class Tipos {
     }
 
     /**
-     * Agrega todos los tipos de las listas de un tipo al set
+     * Agrega todos los tipos de las listas de un tipo de daño o inmunidad
      */
     private void agregarTiposDeListasCompletas(Set<String> tipos, Tipo tipo) {
         if (tipo.getDobleDañoRecibido() != null) {
@@ -146,13 +145,17 @@ public class Tipos {
     }
 
     /**
-     * Obtiene solo las debilidades críticas (x4)
+     * Obtiene solo las debilidades críticas
      */
     public List<DebilidadFortaleza> getDebilidadesCriticas() {
         return debilidades.stream()
-                .filter(d -> d.getMultiplicador() >= 4.0)
+                .filter(d -> d.getMultiplicador() == 4.0)
                 .collect(Collectors.toList());
     }
+
+    /**
+     * Obtiene solo las debilidades normales
+     */
     public List<DebilidadFortaleza> getDebilidades() {
         return debilidades.stream()
                 .filter(d -> d.getMultiplicador() == 2.0)
@@ -160,47 +163,21 @@ public class Tipos {
     }
 
     /**
-     * Obtiene solo las resistencias fuertes (x0.25)
+     * Obtiene solo las resistencias fuertes
      */
     public List<DebilidadFortaleza> getResistenciasFuertes() {
         return fortalezas.stream()
-                .filter(f -> f.getMultiplicador() <= 0.25)
+                .filter(f -> f.getMultiplicador() == 0.25)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Obtiene solo las resistencias normales
+     */
     public List<DebilidadFortaleza> getResistencias() {
         return fortalezas.stream()
-                .filter(f -> f.getMultiplicador() < 0.25)
+                .filter(f -> f.getMultiplicador() == 0.5)
                 .collect(Collectors.toList());
-    }
-
-    /**
-     * Obtiene el multiplicador de daño sin nada especial
-     */
-    public double getMultiplicadorPorTipo(String tipo) {
-        return multiplicadores.getOrDefault(tipo, 1.0);
-    }
-
-    /**
-     * Verifica si el Pokémon es inmune a un tipo específico
-     */
-    public boolean esInmuneA(String tipo) {
-        return inmunidades.contains(tipo);
-    }
-
-    /**
-     * Verifica si el Pokémon es débil a un tipo específico
-     */
-    public boolean esDebilA(String tipo) {
-        return multiplicadores.getOrDefault(tipo, 1.0) > 1.0;
-    }
-
-    /**
-     * Verifica si el Pokémon resiste a un tipo específico
-     */
-    public boolean resisteA(String tipo) {
-        return multiplicadores.getOrDefault(tipo, 1.0) < 1.0 &&
-                multiplicadores.getOrDefault(tipo, 1.0) > 0;
     }
 
     /**
@@ -220,7 +197,7 @@ public class Tipos {
 
         List<DebilidadFortaleza> criticasTemp = getDebilidadesCriticas();
         if (!criticasTemp.isEmpty()) {
-            sb.append("  DEBILIDADES CRÍTICAS (x4):\n");
+            sb.append("  Delididad x4:\n");
             for (DebilidadFortaleza d : criticasTemp) {
                 sb.append(String.format("\t•%s\n", d.getTipo()));
             }
@@ -228,7 +205,7 @@ public class Tipos {
         }
 
         if (!getDebilidades().isEmpty()) {
-            sb.append(" DEBILIDADES:\n");
+            sb.append(" Debilidad x2:\n");
             for (DebilidadFortaleza d : getDebilidades()) {
                 sb.append(String.format("\t•%s\n", d.getTipo()));
             }
@@ -236,7 +213,7 @@ public class Tipos {
         }
 
         if (!getResistencias().isEmpty()) {
-            sb.append("FORTALEZAS (Resistencias):\n");
+            sb.append("Resistencias 1/2:\n");
             for (DebilidadFortaleza f : getResistencias()) {
                 sb.append(String.format("\t•%s\n", f.getTipo()));
             }
@@ -246,7 +223,7 @@ public class Tipos {
 
         List<DebilidadFortaleza> resistenciasFuertesTemp = getResistenciasFuertes();
         if (!resistenciasFuertesTemp.isEmpty()) {
-            sb.append(" RESISTENCIAS FUERTES:\n");
+            sb.append("Resistencia 1/4:\n");
             for (DebilidadFortaleza r : resistenciasFuertesTemp) {
                 sb.append(String.format("\t•%s\n", r.getTipo()));
             }
@@ -255,7 +232,7 @@ public class Tipos {
 
 
         if (!inmunidades.isEmpty()) {
-            sb.append("INMUNIDADES (Sin daño):\n");
+            sb.append("Inmunidad:\n");
             for (String inmunidad : inmunidades) {
                 sb.append(String.format("\t• %s\n", inmunidad));
             }
@@ -267,7 +244,7 @@ public class Tipos {
 
 
     /**
-     * Clase interna para representar una debilidad o fortaleza
+     * Clase para representar una un tipo y su multiplicador al daño
      */
     @Getter
     public static class DebilidadFortaleza {
@@ -279,6 +256,9 @@ public class Tipos {
             this.multiplicador = multiplicador;
         }
 
+        /**
+         * @return Devuelve un String con su tipo y su multiplicador
+         */
         @Override
         public String toString() {
             return String.format("\n%s (x%.2f)", tipo, multiplicador);
