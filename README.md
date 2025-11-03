@@ -40,8 +40,8 @@ Algunas ideas que tenemos en mente para futuras versiones:
 
 | Nombre | Rol | GitHub |
 |---------|------|--------|
-| 👨‍🍳 **Martín Hernández** | Co-Autor y desarrollador | [@martinhnandezfnandez-code](https://github.com/martinhnandezfnandez-code) |
-| 🧑‍💻 **Luis González Hernández** | Co-Autor, Mentor y colaborador técnico | [@luisgh7889](https://github.com/luisgh7889) |
+| 👨‍🍳 **Martín Hernández** | Autor Principal y desarrollador | [@martinhnandezfnandez-code](https://github.com/martinhnandezfnandez-code) |
+| 🧑‍💻 **Luis González Hernández** |  Mentor y colaborador técnico | [@luisgh7889](https://github.com/luisgh7889) |
 
 ---
 
