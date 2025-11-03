@@ -24,6 +24,11 @@ public class TipoServiceImpl implements TipoService {
     @Autowired
     private ConexionApi conexionApi;
 
+    /**
+     * Crador de clase que obtiene el tipo del pokemon por el nombre mandandolo al servicio de conexion api
+     *
+     * @return devuelve un String del Json del tipo del pokemon
+     */
     @Override
     public Tipo obtenerTipoPorNombre(String nombre) throws IOException, URISyntaxException {
         String json = conexionApi.getPokeJsonByName(nombre, CONSULTA_TIPO_ID);
@@ -31,6 +36,11 @@ public class TipoServiceImpl implements TipoService {
         return obtenerTipo(json);
     }
 
+    /**
+     * Busca y saca el nombre de los tipos en funcion del daño y los traduce
+     * @param json String del Json del tipo del pokemon
+     @return Una lista String de los tipos del pokemon en función de sus respectivos daños en español
+     */
     private Tipo obtenerTipo(String json) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(json);
@@ -44,32 +54,32 @@ public class TipoServiceImpl implements TipoService {
             }
         }
 
-        JsonNode dañoDobleListadoRelaciones = root.get("damage_relations").get("double_damage_from");
-        JsonNode dañoMitadListadoRelaciones = root.get("damage_relations").get("half_damage_from");
-        JsonNode dañoNoListadoRelaciones = root.get("damage_relations").get("no_damage_from");
+        JsonNode danioDobleListadoRelaciones = root.get("damage_relations").get("double_damage_from");
+        JsonNode danioMitadListadoRelaciones = root.get("damage_relations").get("half_damage_from");
+        JsonNode danioNoListadoRelaciones = root.get("damage_relations").get("no_damage_from");
         List<String> nombreRelacionesList = new ArrayList<>();
 
-        for (JsonNode relacion : dañoDobleListadoRelaciones) {
+        for (JsonNode relacion : danioDobleListadoRelaciones) {
             String nombreIngles = relacion.get("name").asText();
             nombreRelacionesList.add(Traductor.traducirIngles(nombreIngles));
         }
-        tipo.setDobleDañoRecibido(nombreRelacionesList);
+        tipo.setDobleDanioRecibido(nombreRelacionesList);
 
         nombreRelacionesList = new ArrayList<>();
 
-        for (JsonNode relacion : dañoMitadListadoRelaciones) {
+        for (JsonNode relacion : danioMitadListadoRelaciones) {
             String nombreIngles = relacion.get("name").asText();
             nombreRelacionesList.add(Traductor.traducirIngles(nombreIngles));
         }
-        tipo.setMitadDañoRecibido(nombreRelacionesList);
+        tipo.setMitadDanioRecibido(nombreRelacionesList);
 
         nombreRelacionesList = new ArrayList<>();
 
-        for (JsonNode relacion : dañoNoListadoRelaciones) {
+        for (JsonNode relacion : danioNoListadoRelaciones) {
             String nombreIngles = relacion.get("name").asText();
             nombreRelacionesList.add(Traductor.traducirIngles(nombreIngles));
         }
-        tipo.setNoDañoRecibido(nombreRelacionesList);
+        tipo.setNoDanioRecibido(nombreRelacionesList);
 
         return tipo;
     }

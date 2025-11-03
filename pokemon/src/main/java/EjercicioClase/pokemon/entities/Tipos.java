@@ -1,6 +1,7 @@
 package EjercicioClase.pokemon.entities;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.*;
@@ -73,8 +74,8 @@ public class Tipos {
             }
         }
 
-        debilidades.sort((a, b) -> Double.compare(b.getMultiplicador(), a.getMultiplicador()));
-        fortalezas.sort((a, b) -> Double.compare(a.getMultiplicador(), b.getMultiplicador()));
+        debilidades.sort((a, b) -> Double.compare(b.multiplicador(), a.multiplicador()));
+        fortalezas.sort(Comparator.comparingDouble(DebilidadFortaleza::multiplicador));
         inmunidades.sort(String::compareTo);
     }
 
@@ -94,20 +95,20 @@ public class Tipos {
      */
     private double calcularMultiplicadorTipoSimple(String tipoAtaque, Tipo tipo) {
 
-        if (tipo.getNoDañoRecibido() != null &&
-                tipo.getNoDañoRecibido().stream().anyMatch(t -> t.equalsIgnoreCase(tipoAtaque))) {
+        if (tipo.getNoDanioRecibido() != null &&
+                tipo.getNoDanioRecibido().stream().anyMatch(t -> t.equalsIgnoreCase(tipoAtaque))) {
             return 0.0;
         }
 
 
-        if (tipo.getDobleDañoRecibido() != null &&
-                tipo.getDobleDañoRecibido().stream().anyMatch(t -> t.equalsIgnoreCase(tipoAtaque))) {
+        if (tipo.getDobleDanioRecibido() != null &&
+                tipo.getDobleDanioRecibido().stream().anyMatch(t -> t.equalsIgnoreCase(tipoAtaque))) {
             return 2.0;
         }
 
 
-        if (tipo.getMitadDañoRecibido() != null &&
-                tipo.getMitadDañoRecibido().stream().anyMatch(t -> t.equalsIgnoreCase(tipoAtaque))) {
+        if (tipo.getMitadDanioRecibido() != null &&
+                tipo.getMitadDanioRecibido().stream().anyMatch(t -> t.equalsIgnoreCase(tipoAtaque))) {
             return 0.5;
         }
 
@@ -133,14 +134,14 @@ public class Tipos {
      * Agrega todos los tipos de las listas de un tipo de daño o inmunidad
      */
     private void agregarTiposDeListasCompletas(Set<String> tipos, Tipo tipo) {
-        if (tipo.getDobleDañoRecibido() != null) {
-            tipos.addAll(tipo.getDobleDañoRecibido());
+        if (tipo.getDobleDanioRecibido() != null) {
+            tipos.addAll(tipo.getDobleDanioRecibido());
         }
-        if (tipo.getMitadDañoRecibido() != null) {
-            tipos.addAll(tipo.getMitadDañoRecibido());
+        if (tipo.getMitadDanioRecibido() != null) {
+            tipos.addAll(tipo.getMitadDanioRecibido());
         }
-        if (tipo.getNoDañoRecibido() != null) {
-            tipos.addAll(tipo.getNoDañoRecibido());
+        if (tipo.getNoDanioRecibido() != null) {
+            tipos.addAll(tipo.getNoDanioRecibido());
         }
     }
 
@@ -149,7 +150,7 @@ public class Tipos {
      */
     public List<DebilidadFortaleza> getDebilidadesCriticas() {
         return debilidades.stream()
-                .filter(d -> d.getMultiplicador() == 4.0)
+                .filter(d -> d.multiplicador() == 4.0)
                 .collect(Collectors.toList());
     }
 
@@ -158,7 +159,7 @@ public class Tipos {
      */
     public List<DebilidadFortaleza> getDebilidades() {
         return debilidades.stream()
-                .filter(d -> d.getMultiplicador() == 2.0)
+                .filter(d -> d.multiplicador() == 2.0)
                 .collect(Collectors.toList());
     }
 
@@ -167,7 +168,7 @@ public class Tipos {
      */
     public List<DebilidadFortaleza> getResistenciasFuertes() {
         return fortalezas.stream()
-                .filter(f -> f.getMultiplicador() == 0.25)
+                .filter(f -> f.multiplicador() == 0.25)
                 .collect(Collectors.toList());
     }
 
@@ -176,7 +177,7 @@ public class Tipos {
      */
     public List<DebilidadFortaleza> getResistencias() {
         return fortalezas.stream()
-                .filter(f -> f.getMultiplicador() == 0.5)
+                .filter(f -> f.multiplicador() == 0.5)
                 .collect(Collectors.toList());
     }
 
@@ -197,9 +198,9 @@ public class Tipos {
 
         List<DebilidadFortaleza> criticasTemp = getDebilidadesCriticas();
         if (!criticasTemp.isEmpty()) {
-            sb.append("  Delididad x4:\n");
+            sb.append("  Debilidad x4:\n");
             for (DebilidadFortaleza d : criticasTemp) {
-                sb.append(String.format("\t•%s\n", d.getTipo()));
+                sb.append(String.format("\t•%s\n", d.tipo()));
             }
             sb.append("\n");
         }
@@ -207,7 +208,7 @@ public class Tipos {
         if (!getDebilidades().isEmpty()) {
             sb.append(" Debilidad x2:\n");
             for (DebilidadFortaleza d : getDebilidades()) {
-                sb.append(String.format("\t•%s\n", d.getTipo()));
+                sb.append(String.format("\t•%s\n", d.tipo()));
             }
             sb.append("\n");
         }
@@ -215,7 +216,7 @@ public class Tipos {
         if (!getResistencias().isEmpty()) {
             sb.append("Resistencias 1/2:\n");
             for (DebilidadFortaleza f : getResistencias()) {
-                sb.append(String.format("\t•%s\n", f.getTipo()));
+                sb.append(String.format("\t•%s\n", f.tipo()));
             }
             sb.append("\n");
         }
@@ -225,7 +226,7 @@ public class Tipos {
         if (!resistenciasFuertesTemp.isEmpty()) {
             sb.append("Resistencia 1/4:\n");
             for (DebilidadFortaleza r : resistenciasFuertesTemp) {
-                sb.append(String.format("\t•%s\n", r.getTipo()));
+                sb.append(String.format("\t•%s\n", r.tipo()));
             }
             sb.append("\n");
         }
@@ -244,24 +245,17 @@ public class Tipos {
 
 
     /**
-     * Clase para representar una un tipo y su multiplicador al daño
-     */
-    @Getter
-    public static class DebilidadFortaleza {
-        private final String tipo;
-        private final double multiplicador;
-
-        public DebilidadFortaleza(String tipo, double multiplicador) {
-            this.tipo = tipo;
-            this.multiplicador = multiplicador;
-        }
+         * Clase para representar un tipo y su multiplicador al daño
+         */
+        public record DebilidadFortaleza(String tipo, double multiplicador) {
 
         /**
-         * @return Devuelve un String con su tipo y su multiplicador
-         */
-        @Override
-        public String toString() {
-            return String.format("\n%s (x%.2f)", tipo, multiplicador);
+             * @return Devuelve un String con su tipo y su multiplicador
+             */
+            @NonNull
+            @Override
+            public String toString() {
+                return String.format("\n%s (x%.2f)", tipo, multiplicador);
+            }
         }
-    }
 }

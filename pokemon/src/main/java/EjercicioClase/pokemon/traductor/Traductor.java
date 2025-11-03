@@ -3,9 +3,12 @@ package EjercicioClase.pokemon.traductor;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Constructor de clase de traduccion de tipos pokemon
+ */
 public class Traductor {
 
-    private static Map<String, String> diccionarioEN_ES;
+    private static final Map<String, String> diccionarioEN_ES;
 
     static {
         diccionarioEN_ES = new HashMap<>();
@@ -32,9 +35,15 @@ public class Traductor {
 
 
     private Traductor() {
-       super();
+        super();
     }
 
+    /**
+     * Un tipo de pokemon en inglés lo traduce a español
+     *
+     * @param palabra String del tipo pokemon en ingles
+     * @return String tipo pokemon en español
+     */
     public static String traducirIngles(String palabra) {
         String palabraMinuscula = palabra.toLowerCase().trim();
         return diccionarioEN_ES.getOrDefault(palabraMinuscula,

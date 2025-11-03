@@ -23,7 +23,7 @@ public class Habilidades {
             response += "\tHabilidad 2= " + habilidad2 + '\n';
         }
         if (habilidadOculta != null) {
-            response += "\tHabilidad oculta= " + habilidadOculta.toString() + '\n';
+            response += "\tHabilidad oculta= " + habilidadOculta + '\n';
         }
         return response;
     }

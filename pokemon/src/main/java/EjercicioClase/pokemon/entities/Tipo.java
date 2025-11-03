@@ -9,9 +9,9 @@ import java.util.List;
 @Setter
 public class Tipo {
     private String nombre;
-    private List<String> dobleDañoRecibido;
-    private List<String> mitadDañoRecibido;
-    private List<String> noDañoRecibido;
+    private List<String> dobleDanioRecibido;
+    private List<String> mitadDanioRecibido;
+    private List<String> noDanioRecibido;
 
     public Tipo() {
         super();
@@ -25,16 +25,16 @@ public class Tipo {
             this.nombre = tipo.getNombre();
         }
 
-        if (tipo.getDobleDañoRecibido() != null) {
-            this.dobleDañoRecibido = tipo.getDobleDañoRecibido();
+        if (tipo.getDobleDanioRecibido() != null) {
+            this.dobleDanioRecibido = tipo.getDobleDanioRecibido();
         }
 
-        if (tipo.getMitadDañoRecibido() != null) {
-            this.mitadDañoRecibido = tipo.getMitadDañoRecibido();
+        if (tipo.getMitadDanioRecibido() != null) {
+            this.mitadDanioRecibido = tipo.getMitadDanioRecibido();
         }
 
-        if (tipo.getNoDañoRecibido() != null) {
-            this.noDañoRecibido = tipo.getNoDañoRecibido();
+        if (tipo.getNoDanioRecibido() != null) {
+            this.noDanioRecibido = tipo.getNoDanioRecibido();
         }
     }
 

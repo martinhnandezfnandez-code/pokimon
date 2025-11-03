@@ -16,6 +16,7 @@ public class TiposServiceImpl implements TiposService {
     @Autowired
     private TipoService tipoService;
 
+    /**Creador de clase para los Dos posibles tipos del pokemon*/
     @Override
     public Tipos obtenerTipos(String jsonCompleto) throws Exception {
         JsonNode rootNode = objectMapper.readTree(jsonCompleto);
@@ -30,7 +31,7 @@ public class TiposServiceImpl implements TiposService {
             String nombreType = String.valueOf(nameType.get("name")).replace("\"", "");
             String nSlot = String.valueOf(stat.get("slot"));
 
-            //Una vez que tenemos el nombre obtenemos el tipo y sus tipos de daño
+
             Tipo tipo = new Tipo(tipoService.obtenerTipoPorNombre(nombreType));
             switch (nSlot) {
                 case "1":
