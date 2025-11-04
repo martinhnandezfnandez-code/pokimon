@@ -16,7 +16,9 @@ public class TiposServiceImpl implements TiposService {
     @Autowired
     private TipoService tipoService;
 
-    /**Creador de clase para los Dos posibles tipos del pokemon*/
+    /**
+     * Creador de clase para los Dos posibles tipos del pokemon
+     */
     @Override
     public Tipos obtenerTipos(String jsonCompleto) throws Exception {
         JsonNode rootNode = objectMapper.readTree(jsonCompleto);

@@ -245,17 +245,17 @@ public class Tipos {
 
 
     /**
-         * Clase para representar un tipo y su multiplicador al daño
-         */
-        public record DebilidadFortaleza(String tipo, double multiplicador) {
+     * Clase para representar un tipo y su multiplicador al daño
+     */
+    public record DebilidadFortaleza(String tipo, double multiplicador) {
 
         /**
-             * @return Devuelve un String con su tipo y su multiplicador
-             */
-            @NonNull
-            @Override
-            public String toString() {
-                return String.format("\n%s (x%.2f)", tipo, multiplicador);
-            }
+         * @return Devuelve un String con su tipo y su multiplicador
+         */
+        @NonNull
+        @Override
+        public String toString() {
+            return String.format("\n%s (x%.2f)", tipo, multiplicador);
         }
+    }
 }

@@ -26,7 +26,7 @@ public class ConexionApiImpl implements ConexionApi {
 
     /**
      * Tipos de busquedas en la API
-     * */
+     */
     public static final int BUSQUEDA_NOMBRE_ID = 1;
     public static final int BUSQUEDA_HABILIDAD_ID = 2;
     public static final int BUSQUEDA_TIPO_ID = 3;
@@ -39,7 +39,6 @@ public class ConexionApiImpl implements ConexionApi {
      * @param tipoConsulta: iD con el tipo de consulta que deseamos realizar:
      *                      1 = POKEMON
      *                      2 = HABILIDAD
-     *
      * @return Objeto STRING con el JSON obtenido para la llamada a la API basándonos en el tipo de consulta y el valor dado.
      */
     @Override
@@ -55,7 +54,7 @@ public class ConexionApiImpl implements ConexionApi {
                     url += HABILIDAD_URL + valorConsulta;
                     break;
                 case BUSQUEDA_TIPO_ID:
-                    url += TIPOS_URL+ valorConsulta;
+                    url += TIPOS_URL + valorConsulta;
                     break;
                 default:
                     System.out.println("No se ha introducido un tipo valido");

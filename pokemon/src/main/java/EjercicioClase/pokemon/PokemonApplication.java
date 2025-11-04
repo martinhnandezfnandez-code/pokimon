@@ -22,7 +22,7 @@ public class PokemonApplication {
         return args -> {
             Scanner sc = new Scanner(System.in);
 
-            System.out.println("Dame el nombre del pokemon");
+            System.out.println("Dime el nombre del pokemon");
             String nombre = sc.nextLine();
             Pokemon pokemon = pokemonService.obtenerPokemonPorNombre(nombre);
             System.out.println("=======Pokemon=======");

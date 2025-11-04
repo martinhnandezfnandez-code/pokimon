@@ -33,7 +33,7 @@ public class HabilidadesServicesImpl implements HabilidadesServices {
             String nombreHabilidad = String.valueOf(nameAbility.get("name")).replace("\"", "");
             String nSlot = String.valueOf(stat.get("slot"));
 
-            //Una vez que tenemos el nombre obtenemos la habilidad y su descripción
+            //Obtenemos la habilidad y su descripción basándonos en el nombre que hemos obtenido
             Habilidad habilidad = new Habilidad(habilidadService.obtenerHabilidadPorNombre(nombreHabilidad));
 
             switch (nSlot) {

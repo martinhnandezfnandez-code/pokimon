@@ -13,24 +13,24 @@ public class Traductor {
     static {
         diccionarioEN_ES = new HashMap<>();
 
-        diccionarioEN_ES.put("normal", "normal");
-        diccionarioEN_ES.put("steel", "acero");
-        diccionarioEN_ES.put("water", "agua");
-        diccionarioEN_ES.put("bug", "bicho");
-        diccionarioEN_ES.put("dragon", "dragón");
-        diccionarioEN_ES.put("electric", "eléctrico");
-        diccionarioEN_ES.put("ghost", "fantasma");
-        diccionarioEN_ES.put("fire", "fuego");
-        diccionarioEN_ES.put("fairy", "hada");
-        diccionarioEN_ES.put("ice", "hielo");
-        diccionarioEN_ES.put("fighting", "lucha");
-        diccionarioEN_ES.put("grass", "planta");
-        diccionarioEN_ES.put("psychic", "psíquico");
-        diccionarioEN_ES.put("rock", "roca");
-        diccionarioEN_ES.put("dark", "siniestro");
-        diccionarioEN_ES.put("ground", "tierra");
-        diccionarioEN_ES.put("poison", "veneno");
-        diccionarioEN_ES.put("flying", "volador");
+        diccionarioEN_ES.put("normal", "Normal");
+        diccionarioEN_ES.put("steel", "Acero");
+        diccionarioEN_ES.put("water", "Agua");
+        diccionarioEN_ES.put("bug", "Bicho");
+        diccionarioEN_ES.put("dragon", "Dragón");
+        diccionarioEN_ES.put("electric", "Eléctrico");
+        diccionarioEN_ES.put("ghost", "Fantasma");
+        diccionarioEN_ES.put("fire", "Fuego");
+        diccionarioEN_ES.put("fairy", "Hada");
+        diccionarioEN_ES.put("ice", "Hielo");
+        diccionarioEN_ES.put("fighting", "Lucha");
+        diccionarioEN_ES.put("grass", "Planta");
+        diccionarioEN_ES.put("psychic", "Psíquico");
+        diccionarioEN_ES.put("rock", "Roca");
+        diccionarioEN_ES.put("dark", "Siniestro");
+        diccionarioEN_ES.put("ground", "Tierra");
+        diccionarioEN_ES.put("poison", "Veneno");
+        diccionarioEN_ES.put("flying", "Volador");
     }
 
 
@@ -47,6 +47,6 @@ public class Traductor {
     public static String traducirIngles(String palabra) {
         String palabraMinuscula = palabra.toLowerCase().trim();
         return diccionarioEN_ES.getOrDefault(palabraMinuscula,
-                "Translation not available for: " + palabra);
+                "Traducción no disponible para: " + palabra);
     }
 }

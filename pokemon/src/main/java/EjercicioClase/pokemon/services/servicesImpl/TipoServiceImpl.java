@@ -38,8 +38,9 @@ public class TipoServiceImpl implements TipoService {
 
     /**
      * Busca y saca el nombre de los tipos en funcion del daño y los traduce
+     *
      * @param json String del Json del tipo del pokemon
-     @return Una lista String de los tipos del pokemon en función de sus respectivos daños en español
+     * @return Una lista String de los tipos del pokemon en función de sus respectivos daños en español
      */
     private Tipo obtenerTipo(String json) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

@@ -30,6 +30,6 @@ public class Habilidad {
      */
     @Override
     public String toString() {
-        return "\t" + nombre + "\t Description = " + descripcion + '\n';
+        return "\t" + nombre + "\n Descripción = " + descripcion + '\n';
     }
 }

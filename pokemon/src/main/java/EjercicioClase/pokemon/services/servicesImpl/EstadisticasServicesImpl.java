@@ -14,7 +14,8 @@ public class EstadisticasServicesImpl implements EstadisticasServices {
      * Metodo que obtiene las estadisticas base de un json obtenido
      *
      * @param jsonCompleto: Json con las estadisticas.
-     * */
+     *
+     */
     @Override
     public Estadisticas obtenerStatBase(String jsonCompleto) throws Exception {
         JsonNode rootNode = objectMapper.readTree(jsonCompleto);

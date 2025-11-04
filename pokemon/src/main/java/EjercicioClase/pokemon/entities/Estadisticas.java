@@ -17,6 +17,7 @@ public class Estadisticas {
 
     /**
      * Metodo que escupe una cadena de texto con las estadísticas del pokemon
+     *
      * @return String con cadena de estadisticas
      */
     @Override
