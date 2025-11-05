@@ -39,6 +39,7 @@ public class ConexionApiImpl implements ConexionApi {
      * @param tipoConsulta: iD con el tipo de consulta que deseamos realizar:
      *                      1 = POKEMON
      *                      2 = HABILIDAD
+     *                      3 = TIPO
      * @return Objeto STRING con el JSON obtenido para la llamada a la API basándonos en el tipo de consulta y el valor dado.
      */
     @Override
