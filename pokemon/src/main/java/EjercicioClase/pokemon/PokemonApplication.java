@@ -26,7 +26,7 @@ public class PokemonApplication {
             String nombre = sc.nextLine();
             Pokemon pokemon = pokemonService.obtenerPokemonPorNombre(nombre);
             System.out.println("=======Pokemon=======");
-            System.out.println("Nombre: " + pokemon.getNombre());
+            System.out.println("Nombre: " + pokemon.getId());
             System.out.println("Estadísticas: " + pokemon.getEstadistica().toString());
             System.out.println("Tipos: " + pokemon.getTipos().toString());
             System.out.println("Habilidades: \n" + pokemon.getHabilidades().toString());

@@ -11,11 +11,15 @@ public class Pokemon {
     private Estadisticas estadistica;
     private Tipos tipos;
     private Habilidades habilidades;
+    private Nombre id;
 
-    public Pokemon(Estadisticas estadistica, String nombre, Tipos tipo, Habilidades habilidades) {
+
+    public Pokemon(Estadisticas estadistica, String nombre, Tipos tipo, Habilidades habilidades, Nombre id) {
         this.estadistica = estadistica;
         this.nombre = nombre;
         this.tipos = tipo;
         this.habilidades = habilidades;
+        this.id = id;
+
     }
 }
