@@ -17,7 +17,9 @@ public class Nombre {
         super();
     }
 
-
+    /**
+     * @return String con el nombre del pokemon
+     */
     @Override
     public String toString() {
         return nombre;

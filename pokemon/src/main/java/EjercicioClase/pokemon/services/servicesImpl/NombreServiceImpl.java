@@ -10,14 +10,18 @@ import org.springframework.stereotype.Service;
 public class NombreServiceImpl implements NombreService {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    /**
+     * Obtiene el nombre buscandolo en el Json
+     * @param jsonCompleto Json del nombre
+     * @return String con el nombre del pokemon
+     */
     @Override
     public Nombre obtenerNombre(String jsonCompleto) throws Exception {
         JsonNode rootNode = objectMapper.readTree(jsonCompleto);
         JsonNode formsArray = rootNode.get("forms");
-
         Nombre nombre = new Nombre();
 
-        if (formsArray != null && formsArray.isArray() && formsArray.size() > 0) {
+        if (formsArray != null) {
             JsonNode firstForm = formsArray.get(0);
             JsonNode nameNode = firstForm.get("name");
 

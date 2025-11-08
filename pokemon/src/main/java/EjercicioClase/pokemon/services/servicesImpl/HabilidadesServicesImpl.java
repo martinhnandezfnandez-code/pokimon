@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HabilidadesServicesImpl implements HabilidadesServices {
+    public static final String HABILIDAD_PRINCIPAL = "1";
+    public static final String HABILIDAD_SECUNDARIA = "2";
+    public static final String HABILIDAD_OCULTA = "3";
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
@@ -37,13 +40,13 @@ public class HabilidadesServicesImpl implements HabilidadesServices {
             Habilidad habilidad = new Habilidad(habilidadService.obtenerHabilidadPorNombre(nombreHabilidad));
 
             switch (nSlot) {
-                case "1":
+                case HABILIDAD_PRINCIPAL:
                     habilidades.setHabilidad(habilidad);
                     break;
-                case "2":
+                case HABILIDAD_SECUNDARIA:
                     habilidades.setHabilidad2(habilidad);
                     break;
-                case "3":
+                case HABILIDAD_OCULTA:
                     habilidades.setHabilidadOculta(habilidad);
                     break;
                 default:
