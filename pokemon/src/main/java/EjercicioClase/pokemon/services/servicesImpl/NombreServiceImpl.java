@@ -12,6 +12,7 @@ public class NombreServiceImpl implements NombreService {
 
     /**
      * Obtiene el nombre buscandolo en el Json
+     *
      * @param jsonCompleto Json del nombre
      * @return String con el nombre del pokemon
      */
@@ -27,6 +28,27 @@ public class NombreServiceImpl implements NombreService {
 
             if (nameNode != null) {
                 nombre.setNombre(nameNode.asText());
+            }
+        }
+        JsonNode gameIndices = rootNode.get("game_indices");
+        if (gameIndices != null && gameIndices.isArray()) {
+            for (JsonNode entry : gameIndices) {
+                if (entry == null || entry.isNull()) continue;
+                JsonNode versionNode = entry.get("version");
+                if (versionNode == null || versionNode.isNull()) continue;
+                JsonNode versionName = versionNode.get("name");
+                if (versionName == null || versionName.isNull()) continue;
+
+                if ("white-2".equals(versionName.asText())) {
+                    JsonNode idx = entry.get("game_index");
+                    if (idx != null && !idx.isNull()) {
+                        // Si Nombre.setId espera String:
+                        nombre.setId(idx.asText()); // conserva el valor tal cual el campo JSON
+                        // Si setId espera int, usa:
+                        // nombre.setId(idx.asInt());
+                    }
+                    break;
+                }
             }
         }
 

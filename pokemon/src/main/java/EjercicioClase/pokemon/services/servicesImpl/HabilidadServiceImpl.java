@@ -38,7 +38,6 @@ public class HabilidadServiceImpl implements HabilidadService {
         }
 
         JsonNode entries = root.get("flavor_text_entries");
-
         for (JsonNode entry : entries) {
             if (entry.get("language").get("name").asText().equals("es")) {
                 habilidad.setDescripcion(entry.get("flavor_text").asText().replace("\n", ""));

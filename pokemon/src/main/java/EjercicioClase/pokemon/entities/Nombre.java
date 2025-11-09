@@ -12,6 +12,7 @@ import lombok.Setter;
 @Setter
 public class Nombre {
     private String nombre;
+    private String id;
 
     public Nombre() {
         super();
@@ -22,7 +23,7 @@ public class Nombre {
      */
     @Override
     public String toString() {
-        return nombre;
+        return nombre + "\n Su id es: " +id;
     }
 }
 
