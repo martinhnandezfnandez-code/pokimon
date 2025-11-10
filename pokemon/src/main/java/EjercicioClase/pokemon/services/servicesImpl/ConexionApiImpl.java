@@ -84,6 +84,7 @@ public class ConexionApiImpl implements ConexionApi {
 
         int responseCode = connection.getResponseCode();
 
+        try{
         if (responseCode == STATUS_CODE_OK) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder response = new StringBuilder();
@@ -98,6 +99,11 @@ public class ConexionApiImpl implements ConexionApi {
             return response.toString();
         } else {
             throw new RuntimeException("Error de connexion con la api Código: " + responseCode);
+        }}
+        catch (RuntimeException fallo){
+            System.out.println(fallo.getMessage());
+            System.exit(0);
         }
+        return url;
     }
 }

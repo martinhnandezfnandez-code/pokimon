@@ -22,21 +22,10 @@ public class NombreServiceImpl implements NombreService {
         JsonNode formsArray = rootNode.get("forms");
         Nombre nombre = new Nombre();
 
-        if (formsArray != null) {
-            JsonNode firstForm = formsArray.get(0);
-            JsonNode nameNode = firstForm.get("name");
-
-            if (nameNode != null) {
-                nombre.setNombre(nameNode.asText());
-            }
-        }
-        JsonNode gameIndices = rootNode.get("game_indices");
-        for (JsonNode entry : gameIndices) {
-            if (entry.get("version").get("name").asText().equals("white-2")) {
-                nombre.setId(entry.get("game_index").asText().replace("\n", ""));
-                break;
-            }
-        }
+            JsonNode nombres = rootNode.get("name");
+            JsonNode id = rootNode.get("id");
+            nombre.setNombre(nombres.asText());
+            nombre.setId(id.asText());
 
         return nombre;
     }

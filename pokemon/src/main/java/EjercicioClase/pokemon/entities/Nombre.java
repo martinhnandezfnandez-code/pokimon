@@ -23,7 +23,7 @@ public class Nombre {
      */
     @Override
     public String toString() {
-        return nombre + "\n Su id es: " +id;
+        return nombre + "\nSu número de pokedex es: " +id;
     }
 }
 
