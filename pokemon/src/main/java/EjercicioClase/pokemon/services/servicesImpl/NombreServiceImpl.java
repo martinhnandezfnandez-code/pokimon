@@ -31,24 +31,10 @@ public class NombreServiceImpl implements NombreService {
             }
         }
         JsonNode gameIndices = rootNode.get("game_indices");
-        if (gameIndices != null && gameIndices.isArray()) {
-            for (JsonNode entry : gameIndices) {
-                if (entry == null || entry.isNull()) continue;
-                JsonNode versionNode = entry.get("version");
-                if (versionNode == null || versionNode.isNull()) continue;
-                JsonNode versionName = versionNode.get("name");
-                if (versionName == null || versionName.isNull()) continue;
-
-                if ("white-2".equals(versionName.asText())) {
-                    JsonNode idx = entry.get("game_index");
-                    if (idx != null && !idx.isNull()) {
-                        // Si Nombre.setId espera String:
-                        nombre.setId(idx.asText()); // conserva el valor tal cual el campo JSON
-                        // Si setId espera int, usa:
-                        // nombre.setId(idx.asInt());
-                    }
-                    break;
-                }
+        for (JsonNode entry : gameIndices) {
+            if (entry.get("version").get("name").asText().equals("white-2")) {
+                nombre.setId(entry.get("game_index").asText().replace("\n", ""));
+                break;
             }
         }
 
