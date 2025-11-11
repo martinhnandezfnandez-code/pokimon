@@ -24,6 +24,7 @@ public class PokemonApplication {
 
             System.out.println("Escribe el nombre o el Id del pokemon");
             String nombre = sc.nextLine();
+
             Pokemon pokemon = pokemonService.obtenerPokemonPorNombre(nombre);
             System.out.println("=======Pokemon=======");
             System.out.println("Nombre: " + pokemon.getId().toString());

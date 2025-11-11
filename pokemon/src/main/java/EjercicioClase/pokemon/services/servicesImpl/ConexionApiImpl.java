@@ -1,5 +1,6 @@
 package EjercicioClase.pokemon.services.servicesImpl;
 
+import EjercicioClase.pokemon.exceptions.ApiGenericException;
 import EjercicioClase.pokemon.services.ConexionApi;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,12 @@ import java.net.URISyntaxException;
 
 @Service
 public class ConexionApiImpl implements ConexionApi {
+    /**
+     * Codigos HTTP Controlados
+     */
     public static final int STATUS_CODE_OK = 200;
+    public static final int STATUS_CODE_NOT_FOUND = 404;
+    public static final int STATUS_CODE_INTERNAL_SERVER_ERROR = 500;
     public static final String REQUEST_METHOD = "GET";
 
     /**
@@ -31,6 +37,10 @@ public class ConexionApiImpl implements ConexionApi {
     public static final int BUSQUEDA_HABILIDAD_ID = 2;
     public static final int BUSQUEDA_TIPO_ID = 3;
 
+    /**
+     * Codigos de error
+     */
+    public static final int CODIGO_ERROR_GENERICO = 0;
 
     /**
      * Metodo que obtiene un JSON dado el nombre del pokemon.
@@ -62,7 +72,7 @@ public class ConexionApiImpl implements ConexionApi {
                     System.out.println("Consulta los posibles tipos aquí: " + url);
             }
 
-            return getJsonResponse(url);
+            return getJsonResponse(url, tipoConsulta);
         }
 
         System.out.println("No se ha introducido valor de consulta");
@@ -76,7 +86,7 @@ public class ConexionApiImpl implements ConexionApi {
      * @return Objeto tipo STRING con el JSON obtenido
      *
      */
-    private static String getJsonResponse(String url) throws URISyntaxException, IOException {
+    private static String getJsonResponse(String url, Integer tipoDeConsulta) throws URISyntaxException, IOException {
         URI urlPokemon = new URI(url);
 
         HttpURLConnection connection = (HttpURLConnection) urlPokemon.toURL().openConnection();
@@ -84,26 +94,36 @@ public class ConexionApiImpl implements ConexionApi {
 
         int responseCode = connection.getResponseCode();
 
-        try{
-        if (responseCode == STATUS_CODE_OK) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder response = new StringBuilder();
+        try {
+            if (responseCode == STATUS_CODE_OK) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
 
-            String respuesta;
+                String respuesta;
 
-            while ((respuesta = reader.readLine()) != null) {
-                response.append(respuesta);
+                while ((respuesta = reader.readLine()) != null) {
+                    response.append(respuesta);
+                }
+
+                reader.close();
+                return response.toString();
+
+            } else {
+                if (responseCode == STATUS_CODE_NOT_FOUND) {
+                    throw new ApiGenericException("Búsqueda no Encontrada", tipoDeConsulta);
+
+                } else if (responseCode >= STATUS_CODE_INTERNAL_SERVER_ERROR) {
+                    throw new ApiGenericException("Error de conexión con la Api", CODIGO_ERROR_GENERICO);
+
+                } else {
+                    throw new ApiGenericException("Error de connexion con la api Código: " + responseCode, tipoDeConsulta);
+                }
             }
-
-            reader.close();
-            return response.toString();
-        } else {
-            throw new RuntimeException("Error de connexion con la api Código: " + responseCode);
-        }}
-        catch (RuntimeException fallo){
-            System.out.println(fallo.getMessage());
+        } catch (ApiGenericException fallo) {
+            System.out.println(fallo.print());
             System.exit(0);
         }
+
         return url;
     }
 }
