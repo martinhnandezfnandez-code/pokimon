@@ -36,6 +36,4 @@ public class PokemonServiceImpl implements PokemonService {
         Nombre id = nombreService.obtenerNombre(jsonPoke);
         return new Pokemon(estadisticas, nombre, tipo, habilidades, id);
     }
-
-
 }

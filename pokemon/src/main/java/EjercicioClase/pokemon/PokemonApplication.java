@@ -1,6 +1,9 @@
 package EjercicioClase.pokemon;
 
 import EjercicioClase.pokemon.entities.Pokemon;
+import EjercicioClase.pokemon.exceptions.ApiGenericException;
+import EjercicioClase.pokemon.exceptions.CustomJsonExcepcion;
+import EjercicioClase.pokemon.exceptions.GenericException;
 import EjercicioClase.pokemon.services.PokemonService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,17 +23,25 @@ public class PokemonApplication {
     @Bean
     CommandLineRunner commandLineRunner(PokemonService pokemonService) {
         return args -> {
-            Scanner sc = new Scanner(System.in);
+            try {
+                Scanner sc = new Scanner(System.in);
 
-            System.out.println("Escribe el nombre o el Id del pokemon");
-            String nombre = sc.nextLine();
+                System.out.println("Escribe el nombre o el Id del pokemon");
+                String nombre = sc.nextLine();
 
-            Pokemon pokemon = pokemonService.obtenerPokemonPorNombre(nombre);
-            System.out.println("=======Pokemon=======");
-            System.out.println("Nombre: " + pokemon.getId().toString());
-            System.out.println("Estadísticas: " + pokemon.getEstadistica().toString());
-            System.out.println("Tipos: " + pokemon.getTipos().toString());
-            System.out.println("Habilidades: \n" + pokemon.getHabilidades().toString());
+                Pokemon pokemon = pokemonService.obtenerPokemonPorNombre(nombre);
+
+                System.out.println("=======Pokemon=======");
+                System.out.println("Nombre: " + pokemon.getId().toString());
+                System.out.println("Estadísticas: " + pokemon.getEstadistica().toString());
+                System.out.println("Tipos: " + pokemon.getTipos().toString());
+                System.out.println("Habilidades: \n" + pokemon.getHabilidades().toString());
+            } catch (CustomJsonExcepcion | ApiGenericException genericException) {
+                System.out.println(genericException.print());
+            } catch (Exception e) {
+                System.out.println("Excepcion no controlada: ");
+                System.out.println(e.getMessage());
+            }
         };
     }
 

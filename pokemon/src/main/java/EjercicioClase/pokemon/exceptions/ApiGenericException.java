@@ -9,7 +9,6 @@ public class ApiGenericException extends GenericException {
 
     public ApiGenericException(String mensaje, Integer codigo) {
         super(mensaje, codigo);
-
     }
 
 }

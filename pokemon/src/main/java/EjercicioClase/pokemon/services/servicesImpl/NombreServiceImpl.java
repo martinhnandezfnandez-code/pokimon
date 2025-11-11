@@ -33,9 +33,9 @@ public class NombreServiceImpl implements NombreService {
             nombre.setId(id.asText());
 
             return nombre;
-        }catch (NullPointerException npe){
+        } catch (NullPointerException npe) {
             throw new CustomJsonExcepcion("El Json ha sido modificado en origen", ERROR_LECTURA_JSON, CODIGO_ERROR_POKEMON);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new CustomJsonExcepcion(e.getMessage(), ERROR_LECTURA_JSON, CODIGO_ERROR_POKEMON);
         }
 
