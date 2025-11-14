@@ -5,7 +5,7 @@
 ![Made with Java](https://img.shields.io/badge/made%20with-Java-5382a1)
 
 Bienvenido a **Pokedex Project**, mi primer proyecto personal en GitHub 🎉  
-Este proyecto nace como una práctica para aprender a trabajar con proyectos reales de desarrollo, con la ayuda de mi amigo **Luis González Hernández**, que me está enseñando a organizar y construir un proyecto paso a paso.
+Este proyecto nace como una práctica para aprender a trabajar con proyectos reales de desarrollo, con la ayuda de mi amigo **Luis González Hernández**, que me está enseñando a organizar y construir un proyecto paso a paso. Y las buenas praxis dentro de mi codigo
 
 ---
 
